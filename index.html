@@ -4,39 +4,39 @@
 
 <head>
 
-	<title>Obfuscator Encoder/Decoder</title>	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta charset="UTF-8">	<title>Encryption/Decryption</title>
+
+	<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
+	<h1>Encryption/Decryption</h1>
+
 	<div class="container">
 
-		<h1>Obfuscator Encoder/Decoder</h1>
+		<label for="message">Message:</label>
 
-		<div class="row">
+		<textarea id="message"></textarea>
 
-			<div class="col">
+		<br>
 
-				<label for="encode">Encode:</label>
+		<label for="key">Key:</label>
 
-				<textarea id="encode" placeholder="Enter text to encode"></textarea>
+		<input type="text" id="key">
 
-				<button id="encode-btn">Encode</button>
+		<br>
 
-			</div>
+		<button id="encrypt">Encrypt</button>
 
-			<div class="col">
+		<button id="decrypt">Decrypt</button>
 
-				<label for="decode">Decode:</label>
+		<br>
 
-				<textarea id="decode" placeholder="Enter text to decode"></textarea>
+		<label for="result">Result:</label>
 
-				<button id="decode-btn">Decode</button>
-
-			</div>
-
-		</div>
+		<textarea id="result"></textarea>
 
 	</div>
 
