@@ -1,56 +1,80 @@
-function encode() {
+const encodeBtn = document.getElementById('encode-btn');
 
-    const input = document.getElementById('input').value;
+const decodeBtn = document.getElementById('decode-btn');
 
-    let output = '';
+const encodeTextarea = document.getElementById('encode');
 
-    for (let i = 0; i < input.length; i++) {
+const decodeTextarea = document.getElementById('decode');
 
-        let c = input.charAt(i);
+const encode = (str) => {
 
-        // Check if it's the second letter of a word
+    let encodedStr = '';
 
-        if (i > 0 && input.charAt(i - 1) !== ' ' && c !== ' ') {
+    for (let i = 0; i < str.length; i++) {
 
-            c = '&xx/xx&' + c;
-
-        }
-
-        output += c;
+        encodedStr += '&#' + str.charCodeAt(i) + ';';
 
     }
 
-    document.getElementById('output').value = output;
+    return encodedStr;
 
-}
+};
 
-function decode() {
+const decode = (str) => {
 
-    const input = document.getElementById('input').value;
+    let decodedStr = '';
 
-    let output = '';
+    let charCode = '';
 
-    for (let i = 0; i < input.length; i++) {
+    for (let i = 0; i < str.length; i++) {
 
-        let c = input.charAt(i);
+        if (str[i] === '&') {
 
-        // Check if it's the second letter of a word
+            let j = i + 1;
 
-        if (i > 1 && input.charAt(i - 2) !== '&xx' && c === '/xx&') {
+            while (str[j] !== ';') {
 
-            // Remove the 'ස්කො' from the letter
+                charCode += str[j];
 
-            output = output.slice(0, -3);
+                j++;
+
+            }
+
+            decodedStr += String.fromCharCode(parseInt(charCode));
+
+            charCode = '';
+
+            i = j;
 
         } else {
 
-            output += c;
+            decodedStr += str[i];
 
         }
 
     }
 
-    document.getElementById('output').value = output;
+    return decodedStr;
 
-}
+};
+
+encodeBtn.addEventListener('click', () => {
+
+    const input = encodeTextarea.value;
+
+    const output = encode(input);
+
+    decodeTextarea.value = output;
+
+});
+
+decodeBtn.addEventListener('click', () => {
+
+    const input = decodeTextarea.value;
+
+    const output = decode(input);
+
+    encodeTextarea.value = output;
+
+});
 
