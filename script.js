@@ -1,80 +1,79 @@
-const encodeBtn = document.getElementById('encode-btn');
+const messageInput = document.getElementById('message');
 
-const decodeBtn = document.getElementById('decode-btn');
+const keyInput = document.getElementById('key');
 
-const encodeTextarea = document.getElementById('encode');
+const resultOutput = document.getElementById('result');
 
-const decodeTextarea = document.getElementById('decode');
+const encryptBtn = document.getElementById('encrypt');
 
-const encode = (str) => {
+const decryptBtn = document.getElementById('decrypt');
 
-    let encodedStr = '';
+encryptBtn.addEventListener('click', () => {
 
-    for (let i = 0; i < str.length; i++) {
+	const message = messageInput.value;	const key = keyInput.value;
 
-        encodedStr += '&#' + str.charCodeAt(i) + ';';
+	if (!message || !key) {
 
-    }
+		alert('Please enter a message and a key');
 
-    return encodedStr;
+		return;
 
-};
+	}
 
-const decode = (str) => {
+	const encryptedMessage = encrypt(message, key);
 
-    let decodedStr = '';
-
-    let charCode = '';
-
-    for (let i = 0; i < str.length; i++) {
-
-        if (str[i] === '&') {
-
-            let j = i + 1;
-
-            while (str[j] !== ';') {
-
-                charCode += str[j];
-
-                j++;
-
-            }
-
-            decodedStr += String.fromCharCode(parseInt(charCode));
-
-            charCode = '';
-
-            i = j;
-
-        } else {
-
-            decodedStr += str[i];
-
-        }
-
-    }
-
-    return decodedStr;
-
-};
-
-encodeBtn.addEventListener('click', () => {
-
-    const input = encodeTextarea.value;
-
-    const output = encode(input);
-
-    decodeTextarea.value = output;
+	resultOutput.value = encryptedMessage;
 
 });
 
-decodeBtn.addEventListener('click', () => {
+decryptBtn.addEventListener('click', () => {
 
-    const input = decodeTextarea.value;
+	const message = resultOutput.value;
 
-    const output = decode(input);
+	const key = keyInput.value;
 
-    encodeTextarea.value = output;
+	if (!message || !key) {
+
+		alert('Please enter a message and a key');
+
+		return;
+
+	}
+
+	const decryptedMessage = decrypt(message, key);
+
+	messageInput.value = decryptedMessage;
 
 });
 
+function encrypt(message, key) {
+
+	let encrypted = '';
+
+	for (let i = 0; i < message.length; i++) {
+
+		const charCode = message.charCodeAt(i) ^ key.charCodeAt(i % key.length);
+
+		encrypted += String.fromCharCode(charCode);
+
+	}
+
+	return encrypted;
+
+}
+
+function decrypt(message, key) {
+
+	let decrypted = '';
+
+	for (let i = 0; i < message.length; i++) {
+
+		const charCode = message.charCodeAt(i) ^ key.charCodeAt(i % key.length);
+
+		decrypted += String.fromCharCode(charCode);
+
+	}
+
+	return decrypted;
+
+}
