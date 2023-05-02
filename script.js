@@ -12,7 +12,7 @@ function encode() {
 
         if (i > 0 && input.charAt(i - 1) !== ' ' && c !== ' ') {
 
-            c = 'ස්කො' + c;
+            c = '&xx/xx&' + c;
 
         }
 
@@ -36,7 +36,7 @@ function decode() {
 
         // Check if it's the second letter of a word
 
-        if (i > 1 && input.charAt(i - 2) !== 'ස' && input.charAt(i - 1) === '්' && c === 'ක' && input.charAt(i + 1) === 'ො') {
+        if (i > 1 && input.charAt(i - 2) !== '&xx' && c === '/xx&') {
 
             // Remove the 'ස්කො' from the letter
 
