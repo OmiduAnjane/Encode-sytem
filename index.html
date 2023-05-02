@@ -4,9 +4,7 @@
 
 <head>
 
-	<meta charset="UTF-8">	<title>Encoder/Decoder</title>
-
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Obfuscator Encoder/Decoder</title>	<link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 
@@ -14,19 +12,31 @@
 
 	<div class="container">
 
-		<h1>Encoder/Decoder</h1>
+		<h1>Obfuscator Encoder/Decoder</h1>
 
-		<textarea id="input" placeholder="Enter text here"></textarea>
+		<div class="row">
 
-		<div class="buttons">
+			<div class="col">
 
-			<button id="encode-btn" onclick="encode()">Encode</button>
+				<label for="encode">Encode:</label>
 
-			<button id="decode-btn" onclick="decode()">Decode</button>
+				<textarea id="encode" placeholder="Enter text to encode"></textarea>
+
+				<button id="encode-btn">Encode</button>
+
+			</div>
+
+			<div class="col">
+
+				<label for="decode">Decode:</label>
+
+				<textarea id="decode" placeholder="Enter text to decode"></textarea>
+
+				<button id="decode-btn">Decode</button>
+
+			</div>
 
 		</div>
-
-		<textarea id="output" placeholder="Result"></textarea>
 
 	</div>
 
